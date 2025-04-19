@@ -159,10 +159,10 @@ UINT CChatServerDlg::selectThread(LPVOID any) {
 							if (bytesReceived == 0) {
 								// 客户端正常关闭连接
 								char cliinfo[256]{};
-								sprintf(cliinfo, "客户端%s:%d已断开连接", inet_ntoa(addrCli.sin_addr), ntohs(addrCli.sin_port));
+								sprintf(cliinfo, "<%s:%d>", inet_ntoa(addrCli.sin_addr), ntohs(addrCli.sin_port));
 								CString clibuf = L"客户端";
 								clibuf += CA2W(cliinfo, CP_UTF8); // 指定使用 UTF-8 编码进行转换
-								p->c_recvbuf.AddString(clibuf + L"已断开连接");
+								p->c_recvbuf.AddString(clibuf + L"退出了聊天室");
 								closesocket(p->fdsock.fd_array[i]);
 								FD_CLR(p->fdsock.fd_array[i], &p->fdsock);
 							}

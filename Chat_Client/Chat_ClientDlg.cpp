@@ -220,6 +220,16 @@ void CChatClientDlg::OnBnClickedSend() {
 	CString t = time.Format(L"[%H:%M:%S]"); // 获取当前时间格式
 	// 从文本框获取输入并清空文本框
 	c_sendbuf.GetWindowTextW(m_sendbuf); // 从文本框获取输入到m_sendbuf
+	// 当客户端输入“Bye”、“Quit”、“886”、“Exit”、“bye”、“quit”、“886”、“exit”等退出指令时，关闭客户端
+	CString exit_words[] = { L"Bye", L"Quit", L"886", L"Exit", L"bye", L"quit", L"886", L"exit" };
+	for (int i = 0; i < _countof(exit_words); i++) {
+		if (m_sendbuf.CompareNoCase(exit_words[i]) == 0) {
+			closesocket(sockCli);
+			WSACleanup();
+			Sleep(20);
+			exit(0);
+		}
+	}
 	c_sendbuf.SetWindowTextW(L""); // 清空文本框
 	c_recvbuf.AddString(t + L"<我>:" + m_sendbuf); // 更新显示
 	m_sendbuf += t; // 追加时间
