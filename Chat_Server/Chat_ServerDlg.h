@@ -50,4 +50,5 @@ public:
 	CEdit c_sendbuf;
 	afx_msg void OnBnClickedSend();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnBnClickedOk();
 };

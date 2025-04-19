@@ -50,6 +50,6 @@ public:
 private:
 	CString username;
 public:
-	virtual void OnCancel();
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg void OnBnClickedOk();
 };

@@ -216,6 +216,7 @@ BEGIN_MESSAGE_MAP(CChatServerDlg, CDialogEx)
 	ON_BN_CLICKED(BTN_CREATE, &CChatServerDlg::OnBnClickedCreate)
 	ON_BN_CLICKED(BTN_SEND, &CChatServerDlg::OnBnClickedSend)
 	ON_WM_CTLCOLOR()
+	ON_BN_CLICKED(IDOK, &CChatServerDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -329,7 +330,6 @@ void CChatServerDlg::OnBnClickedCreate(){
 	}
 }
 
-
 void CChatServerDlg::OnBnClickedSend()
 {
 	UpdateData(TRUE);
@@ -378,3 +378,11 @@ HBRUSH CChatServerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
+
+void CChatServerDlg::OnBnClickedOk()
+{
+	// 关闭服务器套接字
+	closesocket(sockSer);
+	WSACleanup();
+	CDialogEx::OnOK();
+}
