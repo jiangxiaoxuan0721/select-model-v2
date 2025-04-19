@@ -16,7 +16,6 @@
 #define BTN_SIGNUP                      1008
 #define EDT_USERNAME                    1009
 #define EDT_PASSWORD                    1010
-#define IDC_LIST1                       1011
 
 // Next default values for new objects
 // 

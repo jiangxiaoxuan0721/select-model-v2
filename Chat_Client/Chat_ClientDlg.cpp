@@ -42,6 +42,7 @@ BEGIN_MESSAGE_MAP(CChatClientDlg, CDialogEx)
 	ON_MESSAGE(WM_SOCKET, &OnReceiveData)
 	ON_WM_CTLCOLOR()
 	ON_WM_DRAWITEM()
+	ON_BN_CLICKED(IDOK, &CChatClientDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 // CChatClientDlg 消息处理程序
@@ -308,10 +309,6 @@ HBRUSH CChatClientDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-void CChatClientDlg::OnCancel(){
-	CDialogEx::OnCancel();
-}
-
 void CChatClientDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	// 处理按钮的自定义绘制
@@ -342,4 +339,11 @@ void CChatClientDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 			pDC->Draw3dRect(rc, RGB(120, 120, 120), RGB(120, 120, 120));
 		}
 	}
+}
+
+void CChatClientDlg::OnBnClickedOk(){
+	// 退出程序
+	closesocket(sockCli);
+	WSACleanup();
+	CDialogEx::OnOK();
 }
